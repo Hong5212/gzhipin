@@ -3,16 +3,28 @@
 同步action: 对象  (与action type一一对应)
 异步action: 函数
  */
-import {reqRegister, reqLogin} from '../api'
-import {AUTH_SUCCESS, ERROR_MSG} from './action-types'
+import {
+    reqRegister,
+    reqLogin,
+    reqUpdateUser
+} from '../api'
+import {
+    AUTH_SUCCESS,
+    ERROR_MSG,
+    RESET_USER,
+    RECEIVE_USER,
+} from './action-types'
 
 
 // 成功的同步action
 const authSuccess = (user) => ({type: AUTH_SUCCESS, data: user}) //对象
-
 // 失败的同步action
 const errorMsg = (msg) => ({type: ERROR_MSG, data: msg}) //对象
 
+//接受用户的同步action
+const receiveUser = (user) => ({type: RECEIVE_USER, data: user})
+//重置用户的同步action
+const resetUser = (msg) => ({type: RESET_USER, data: msg})
 /*
 注册的异步action
 1. 执行异步代码(发ajax请求)
@@ -53,7 +65,6 @@ export function register(user) {
     }
 }
 
-
 /*
 登陆的异步action
  */
@@ -73,6 +84,21 @@ export function login(user) {
             dispatch(authSuccess(result.data))
         } else { //失败
             dispatch(errorMsg(result.msg))
+        }
+    }
+}
+
+/*
+更新用户的异步action
+ */
+export function updateUser(user){
+    return async dispatch => {
+        const response = await reqUpdateUser(user)
+        const result = response.data
+        if(result.code === 0){
+            dispatch(receiveUser(result.data))
+        }else{
+            dispatch(resetUser(result.msg))
         }
     }
 }

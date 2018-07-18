@@ -8,12 +8,15 @@
 登陆大神 --> /dasheninfo 或者 /dashen
  */
 
-export function getRedirectPath(type, header){
+export function getRedirectTo(type, header){
     let path = ''
 
-    // 根据type得到path
-    path += type === 'laoban' ? '/laoban' : '/dashen'
-    // 如果没有头像添加info
+    if(type === 'dashen'){
+        path = '/dashen'
+    }else{
+        path = '/laoban'
+    }
+
     if(!header){
         path += 'info'
     }

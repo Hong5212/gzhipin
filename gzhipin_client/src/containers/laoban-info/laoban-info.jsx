@@ -4,6 +4,7 @@ import {NavBar, WingBlank, List, InputItem, TextareaItem, Button} from 'antd-mob
 import {Redirect} from 'react-router-dom'
 
 import HeaderSelector from '../../components/header-selector/header-selector'
+import {updateUser} from '../../redux/actions'
 
 class LaobanInfo extends Component {
 
@@ -21,15 +22,19 @@ class LaobanInfo extends Component {
         })
     }
 
+    save = () => {
+        this.props.updateUser(this.state)
+    }
+
     // 设置更新header
     setHeader = (header) => {
         this.setState({header})
     }
 
     render() {
-        const {user} = this.props
-        // 如果用户信息已完善, 自动跳转到laoban主界面
-        if(user){
+        const {header, type} = this.props.user
+        if(header){ // 户信息已完善
+            // /laoban /dashen
             return <Redirect to='/laoban'/>
         }
         return (
@@ -39,11 +44,11 @@ class LaobanInfo extends Component {
                 <WingBlank>
                     <List>
                         <InputItem placeholder='请输入招聘职位'
-                                   onChange={val => this.handleChange('POST', val)}>招聘职位</InputItem>
-                        <InputItem placeholder='请输入公司名称'>公司名称</InputItem>
-                        <InputItem placeholder='请输入招聘职位'>招聘职位</InputItem>
-                        <TextareaItem title='职位要求' rows={3}/>
-                        <Button type="primary">保存</Button>
+                                   onChange={val => this.handleChange('post', val)}>招聘职位</InputItem>
+                        <InputItem placeholder='请输入公司名称' onChange={val => this.handleChange('company', val)}>公司名称</InputItem>
+                        <InputItem placeholder='请输入职位薪资' onChange={val => this.handleChange('salary', val)}>职位薪资</InputItem>
+                        <TextareaItem title='职位要求' rows={3} onChange={val => this.handleChange('info', val)}/>
+                        <Button type="primary" onClick={this.save}>保存</Button>
                     </List>
                 </WingBlank>
             </div>
@@ -52,6 +57,6 @@ class LaobanInfo extends Component {
 }
 
 export default connect(
-    state => ({}),
-    {}
+    state => ({user: state.user}),
+    {updateUser}
 )(LaobanInfo)

@@ -37,10 +37,12 @@ class Register extends Component {
 
     render() {
         const {type} = this.state;
-        const {msg, redirectTo} = this.props.user
+        const {msg, redirectTo} = this.props.user;
+        // debugger
         // 如果redirectTo有值
         if(redirectTo){
             // 跳转到redirectTo
+            console.log(redirectTo);
             return <Redirect to={redirectTo}/>
         }
         return (

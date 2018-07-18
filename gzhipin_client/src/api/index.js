@@ -6,9 +6,12 @@
 
 import ajax from './ajax'
 
-const BASIC = ''
+const BASE = ''
 // 请求注册接口
-export const reqRegister = ({username, password, type}) => ajax(BASIC + '/register', {username, password, type}, 'POST')
+export const reqRegister = ({username, password, type}) => ajax(BASE + '/register', {username, password, type}, 'POST')
 
 // 请求登录接口
-export const reqLogin = ({username, password}) => ajax(BASIC + '/Login', {username, password}, 'POST')
+export const reqLogin = ({username, password}) => ajax(BASE + '/Login', {username, password}, 'POST')
+
+//更新用户信息
+export const reqUpdateUser = (user) => ajax(BASE + '/update', user, 'POST')
