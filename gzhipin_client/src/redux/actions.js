@@ -59,14 +59,14 @@ export function register(user) {
  */
 export function login(user) {
     const {username, password} = user
-
-    if (!username) {
-        return errorMsg('必须指定用户名')
-    } else if (!password) {
-        return errorMsg('必须指定密码')
-    }
     return async dispatch => {
-        const response = await reqRegister({username, password})
+        if (!username) {
+            return errorMsg('必须指定用户名')
+        } else if (!password) {
+            return errorMsg('必须指定密码')
+        }
+
+        const response = await reqLogin({username, password})
         const result = response.data;
         if (result.code === 0) { //成功
             //发送成功的同步action

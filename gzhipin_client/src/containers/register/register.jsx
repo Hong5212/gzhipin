@@ -40,7 +40,8 @@ class Register extends Component {
         const {msg, redirectTo} = this.props.user
         // 如果redirectTo有值
         if(redirectTo){
-
+            // 跳转到redirectTo
+            return <Redirect to={redirectTo}/>
         }
         return (
             <div>
