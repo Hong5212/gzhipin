@@ -3,6 +3,8 @@
  */
 import {combineReducers} from 'redux'
 
+import {getRedirectPath} from '../utils'
+
 import {
     AUTH_SUCCESS,
     ERROR_MSG
@@ -19,8 +21,9 @@ const initUser = {
 function user(state = initUser, action) {
     switch (action.type) {
         case AUTH_SUCCESS:
+            const redirectTo = getRedirectPath(action.data.type, action.data.header)
             const user = action.data
-            return {...user, redirectTo: '/'}
+            return {...user, redirectTo}
         case ERROR_MSG:
             const msg = action.data
             return {...state, msg} //?
