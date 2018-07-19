@@ -40,7 +40,7 @@ router.post('/register', function (req, res) {
             })
         }else{
             // 2.3. 如果没有, 保存到users中
-            new UserSchema({username, password: md5(password), type}).save(function(error, user) {
+            new UserModel({username, password: md5(password), type}).save(function(error, user) {
                 // 向浏览器返回一个userid的cookie
                 res.cookie('userid', user._id, {maxAge: 1000*60*60*24*7})
 
