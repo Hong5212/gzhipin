@@ -15,3 +15,6 @@ export const reqLogin = ({username, password}) => ajax(BASE + '/Login', {usernam
 
 //更新用户信息
 export const reqUpdateUser = (user) => ajax(BASE + '/update', user, 'POST')
+
+//获取当前用户
+export const reqUser = () => ajax(BASE + 'user')

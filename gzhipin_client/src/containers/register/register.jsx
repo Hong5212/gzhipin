@@ -21,9 +21,10 @@ class Register extends Component {
 
     handleChange = (name, val) => {
         this.setState({
-            [name]: val // 属性名是name的值, 而是name本身
+            [name]: val // 属性名是name的值, 而不是name本身
         })
     }
+
 
     register = () => {
         console.log(this.state);

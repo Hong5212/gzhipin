@@ -3,21 +3,22 @@
  */
 import React, {Component} from 'react'
 import {NavBar, WingBlank, List, InputItem, Button, WhiteSpace} from 'antd-mobile';
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 import Logo from '../../components/logo/logo'
+import {login} from "../../redux/actions";
 
-export default class Login extends Component {
+class Login extends Component {
     //定义初始状态
     state = {
         username: '',
-        password: '',
-        password2: '',
-        type: 'dashen' // laoban
+        password: ''
     };
 
     handleChange = (name, val) => {
         this.setState({
-            [name]: val // 属性名是name的值, 而是name本身
+            [name]: val // 属性名是name的值, 而不是name本身
         })
     }
 
@@ -31,12 +32,21 @@ export default class Login extends Component {
     }
 
     render() {
+        const {msg, redirectTo} = this.props.user;
+        // debugger
+        // 如果redirectTo有值
+        if(redirectTo){
+            // 跳转到redirectTo
+            console.log(redirectTo);
+            return <Redirect to={redirectTo}/>
+        }
         return (
             <div>
                 <NavBar>用户登录</NavBar>
                 <Logo/>
                 <WingBlank>
                     <List>
+                        <p className='error-msg'>{msg}</p>
                         <WhiteSpace/>
                         <InputItem placeholder="请输入用户名" onChange={val => this.handleChange('username', val)}>用户名：</InputItem>
                         <WhiteSpace/>
@@ -52,3 +62,9 @@ export default class Login extends Component {
     }
 
 }
+
+// 向外暴露是包含UI组件的容器组件
+export default connect(
+    state => ({user: state.user}),
+    {login}
+)(Login);
