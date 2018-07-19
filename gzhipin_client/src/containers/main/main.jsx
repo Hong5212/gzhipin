@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import {NavBar} from 'antd-mobile'
 import Cookies from 'js-cookie'
+import {connect} from "react-redux"
 
 import LaobanInfo from '../laoban-info/laoban-info'
 import DashenInfo from '../dashen-info/dashen-info'
@@ -13,8 +14,10 @@ import Dashen from '../dashen/dashen'
 import Message from '../message/message'
 import Personal from '../personal/personal'
 import NavFooter from '../../components/nav-footer/nav-footer'
-import {connect} from "react-redux"
+import NotFound from '../../components/not-found/not-found'
+
 import {getUser} from '../../redux/actions'
+import {getRedirectTo} from '../../utils'
 
 
 class Main extends Component{
@@ -61,7 +64,7 @@ class Main extends Component{
     }
     render(){
         // 1. 如果从来没有登录过(cookie中没有userid)，自动跳转到login
-        const userid = Cookies.set('userid');
+        const userid = Cookies.get('userid');
         if(!userid){
             return <Redirect to='/login'/>
         }
@@ -76,9 +79,14 @@ class Main extends Component{
         // 得到当前路由信息对象
         // 得到当前请求的路径
         const path = this.props.location.pathname;
+        if(path === '/'){
+            return <Redirect to={getRedirectTo(user.type, user.header)}/>
+        }
 
         // 从navList中找出对应的nav    find(): 返回一个回调函数返回true的元素
-        const currentNav = this.navList.find((nav, index) => path === nav.path) //nav就是navList里面的对象
+        const currentNav = this.navList.find(function(nav, index){ //nav就是navList里面的对象
+            return path === nav.path
+        })
 
         return(
             <div>
@@ -90,6 +98,7 @@ class Main extends Component{
                     <Route path='/dashen' component={Dashen}/>
                     <Route path='/message' component={Message}/>
                     <Route path='/personal' component={Personal}/>
+                    <Route component={NotFound}/>
                 </Switch>
                 {currentNav ? <NavFooter/>: null}
             </div>
@@ -100,7 +109,7 @@ class Main extends Component{
 // 向外暴露是包含UI组件的容器组件
 export default connect(
     state => ({user: state.user}),
-    {}
+    {getUser}
 )(Main);
 
 /*

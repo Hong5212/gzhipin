@@ -1,10 +1,8 @@
+import axios from 'axios'
 /*
 使用axios封装的ajax请求函数
 函数返回的是promise对象
  */
-
-import axios from 'axios'
-
 export default function ajax(url, data={}, type='GET'){
     if(type === 'GET'){ //GET请求
         // 准备url query参数数据
@@ -15,9 +13,11 @@ export default function ajax(url, data={}, type='GET'){
             queryStr += key + '=' + value + '&'
         })
         if(queryStr){
+            // 去除最后的&
             queryStr = queryStr.substring(0, queryStr.length - 1)
             queryStr = '?' + queryStr
         }
+
         return axios.get(url + queryStr)
     }else{ //POST请求
         return axios.post(url, data)

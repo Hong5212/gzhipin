@@ -114,7 +114,7 @@ export function getUser(){
         if(result.code === 0){
             dispatch(receiveUser(result.data))
         }else{
-            dispatch(receiveUser(result.msg))
+            dispatch(resetUser(result.msg))
         }
     }
 }

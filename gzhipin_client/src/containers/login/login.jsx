@@ -22,8 +22,9 @@ class Login extends Component {
         })
     }
 
-    register = () => {
-        console.log(this.state);
+    login = () => {
+        this.props.login(this.state)
+        // console.log(this.state);
     }
 
     goRegister = () => {
@@ -52,7 +53,7 @@ class Login extends Component {
                         <WhiteSpace/>
                         <InputItem type='password' placeholder="请输入密码" onChange={val => this.handleChange('password', val)}>密码：</InputItem>
                         <WhiteSpace/>
-                        <Button type="primary" onClick={this.register}>登&nbsp;&nbsp;录</Button>
+                        <Button type="primary" onClick={this.login}>登&nbsp;&nbsp;录</Button>
                         <WhiteSpace/>
                         <Button onClick={this.goRegister}>还没有账号</Button>
                     </List>
