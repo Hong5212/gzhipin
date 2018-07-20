@@ -88,6 +88,14 @@ class Main extends Component{
             return path === nav.path
         })
 
+        //根据用户类型决定要隐藏哪个nav
+        const {navList} = this;
+        if(user.type === 'dashen'){
+            navList[0].hide = true;
+        }else{
+            navList[1].hide = true;
+        }
+
         return(
             <div>
                 {currentNav ? <NavBar>老板列表</NavBar>: null} {/*js代码要被{}包括着*/}
@@ -100,7 +108,7 @@ class Main extends Component{
                     <Route path='/personal' component={Personal}/>
                     <Route component={NotFound}/>
                 </Switch>
-                {currentNav ? <NavFooter/>: null}
+                {currentNav ? <NavFooter navList={this.navList}/>: null}
             </div>
         )
     }

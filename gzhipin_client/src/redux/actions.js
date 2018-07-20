@@ -25,7 +25,7 @@ const errorMsg = (msg) => ({type: ERROR_MSG, data: msg}) //对象
 //接受用户的同步action
 const receiveUser = (user) => ({type: RECEIVE_USER, data: user})
 //重置用户的同步action
-const resetUser = (msg) => ({type: RESET_USER, data: msg})
+export const resetUser = (msg) => ({type: RESET_USER, data: msg})
 /*
 注册的异步action
 1. 执行异步代码(发ajax请求)
