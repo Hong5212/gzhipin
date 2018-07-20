@@ -33,7 +33,7 @@ class Personal extends React.Component {
 
         return (
             <div>
-                <Result
+                <Result style={{marginTop:50}}
                     img={<img src={require(`../../assets/imgs/${header}.png`)} style={{width: 50}} alt="header"/>}
                     title={username}
                     message={company}
@@ -43,6 +43,7 @@ class Personal extends React.Component {
                     <Item multipleLine>
                         <Brief>职位: {post}</Brief>
                         <Brief>简介: {info}</Brief>
+                        {salary ? <Brief>薪资: {salary}</Brief> : null}
                     </Item>
                 </List>
                 <WhiteSpace/>

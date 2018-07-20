@@ -15,7 +15,7 @@ class NavFooter extends Component {
     render() {
         const navList = this.props.navList.filter(nav => !nav.hide)
         // 只有路由组件才能路由相关属性
-        const path = this.props.location.pathname
+        const path = this.props.location.pathname;
         // 根据数据的数组生成标签的数组
         return (
             <TabBar>

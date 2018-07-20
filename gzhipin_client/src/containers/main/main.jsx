@@ -51,8 +51,7 @@ class Main extends Component{
             icon: 'personal',
             text: '个人',
         }
-    ]
-
+    ];
     //组件已经加载
     componentDidMount(){
         //当前还没登录，当前面登录过 --> 发送异步的ajax请求，获取当前用户
@@ -90,7 +89,7 @@ class Main extends Component{
 
         //根据用户类型决定要隐藏哪个nav
         const {navList} = this;
-        if(user.type === 'dashen'){
+        if(user.type === 'dashan'){
             navList[0].hide = true;
         }else{
             navList[1].hide = true;
@@ -98,7 +97,7 @@ class Main extends Component{
 
         return(
             <div>
-                {currentNav ? <NavBar>老板列表</NavBar>: null} {/*js代码要被{}包括着*/}
+                {currentNav ? <NavBar className='fix-top'>{currentNav.title}</NavBar>: null} {/*js代码要被{}包括着*/}
                 <Switch>
                     <Route path='/laobaninfo' component={LaobanInfo}/>
                     <Route path='/dasheninfo' component={DashenInfo}/>
