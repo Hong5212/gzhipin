@@ -27,7 +27,6 @@ class Register extends Component {
 
 
     register = () => {
-        console.log(this.state);
         this.props.register(this.state)
     }
 
@@ -43,7 +42,6 @@ class Register extends Component {
         // 如果redirectTo有值
         if(redirectTo){
             // 跳转到redirectTo
-            console.log(redirectTo);
             return <Redirect to={redirectTo}/>
         }
         return (

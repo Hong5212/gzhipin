@@ -4,23 +4,21 @@
 import React, {Component} from 'react'
 import {WingBlank, WhiteSpace, Card} from 'antd-mobile'
 import PropTypes from 'prop-types'
+import {withRouter} from 'react-router-dom'
 
-export default class UserList extends Component {
+class UserList extends Component {
     static propTypes = {
         userList: PropTypes.array.isRequired
     };
-
     render() {
         const userList = this.props.userList.filter(user => user.header); //只显示头像
         return (
             <WingBlank style={{marginTop: 50, marginBottom: 50}}>
-
                 {
                     userList.map(user => (
                         <div key={user._id}>
-
                             <WhiteSpace/>
-                            <Card>
+                            <Card onClick={()=> this.props.history.replace(`/chat/${user._id}`)}>
                                 <Card.Header
                                     thumb={require(`../../assets/imgs/${user.header}.png`)}
                                     extra={<span>{user.username}</span>}
@@ -39,3 +37,5 @@ export default class UserList extends Component {
         )
     }
 }
+
+export default withRouter(UserList)

@@ -2,7 +2,6 @@
 包含多个用于生成新的state的reducer函数的模块
  */
 import {combineReducers} from 'redux'
-
 import {getRedirectTo} from '../utils'
 
 import {

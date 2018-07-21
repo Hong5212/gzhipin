@@ -15,7 +15,7 @@ import {
     ERROR_MSG,
     RESET_USER,
     RECEIVE_USER,
-    RECEIVE_USER_LIST
+    RECEIVE_USER_LIST,
 } from './action-types'
 
 
@@ -30,6 +30,7 @@ const receiveUser = (user) => ({type: RECEIVE_USER, data: user});
 export const resetUser = (msg) => ({type: RESET_USER, data: msg});
 // 接收用户列表的同步action
 const receiveUserList = (userList) => ({type: RECEIVE_USER_LIST, data: userList});
+
 /*
 注册的异步action
 1. 执行异步代码(发ajax请求)
@@ -135,3 +136,7 @@ export function getUserList(type){
         }
     }
 }
+
+/*
+
+ */

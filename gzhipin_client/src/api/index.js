@@ -3,15 +3,14 @@
 每个函数对应一个接口
 每个函数的返回值是promise对象
  */
-
 import ajax from './ajax'
 
-const BASE = ''
+const BASE = '';
 // 请求注册接口
-export const reqRegister = ({username, password, type}) => ajax(BASE + '/register', {username, password, type}, 'POST')
+export const reqRegister = ({username, password, type}) => ajax(BASE + '/register', {username, password, type}, 'POST');
 
 // 请求登录接口
-export const reqLogin = ({username, password}) => ajax(BASE + '/Login', {username, password}, 'POST')
+export const reqLogin = ({username, password}) => ajax(BASE + '/Login', {username, password}, 'POST');
 
 //更新用户信息
 export const reqUpdateUser = (user) => ajax(BASE + '/update', user, 'POST');
@@ -21,3 +20,10 @@ export const reqUser = () => ajax(BASE + '/user');
 
 //获取指定类型的用户列表
 export const reqUsers = (type) => ajax(BASE + '/userlist', {type});
+
+// 请求获取当前用户的所有聊天记录
+export const reqChatMsgList = () => ajax('/msglist');
+
+// 标识查看了指定用户发送的聊天信息
+export const reqReadChatMsg = (from) => ajax('/readmsg', {from}, 'POST');
+

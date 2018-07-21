@@ -11,6 +11,7 @@ import LaobanInfo from '../laoban-info/laoban-info'
 import DashenInfo from '../dashen-info/dashen-info'
 import Laoban from '../laoban/laoban'
 import Dashen from '../dashen/dashen'
+import Chat from '../chat/chat'
 import Message from '../message/message'
 import Personal from '../personal/personal'
 import NavFooter from '../../components/nav-footer/nav-footer'
@@ -103,6 +104,7 @@ class Main extends Component{
                     <Route path='/dasheninfo' component={DashenInfo}/>
                     <Route path='/laoban' component={Laoban}/>
                     <Route path='/dashen' component={Dashen}/>
+                    <Route path='/chat/:userid' component={Chat}/>
                     <Route path='/message' component={Message}/>
                     <Route path='/personal' component={Personal}/>
                     <Route component={NotFound}/>

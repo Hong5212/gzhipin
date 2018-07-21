@@ -38,7 +38,6 @@ class Login extends Component {
         // 如果redirectTo有值
         if(redirectTo){
             // 跳转到redirectTo
-            console.log(redirectTo);
             return <Redirect to={redirectTo}/>
         }
         return (
