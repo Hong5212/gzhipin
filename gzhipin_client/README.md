@@ -3,14 +3,16 @@
     git init
     git add *
     git commit -m "xxx"
+    
 2). 创建github远程仓库
     New Repository
     指定名称
     创建
+    
 3). 将本地仓库推送到远程仓库
     git remote add origin url 关联远程仓库
     git push origin master
-
+    
 4). push本地的更新
     git add *
     git commit -m "xxx"
