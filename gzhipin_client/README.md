@@ -20,4 +20,4 @@
     git pull origin master
 
 6). 克隆github上的项目:
-    git clone https://github.com/zxfjd3g/xxx.git
+    git clone url
